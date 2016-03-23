@@ -1,5 +1,10 @@
 package com.exceptions;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
 /**
  * Created by a487037 on 03/23/2016.
  */
@@ -13,10 +18,22 @@ public class MarkerImpl implements Marker {
     }
     public static void main(String[] args) {
         MarkerImpl marker = new MarkerImpl();
-        try {
+        try(InputStream inputStream = new FileInputStream("src/com/exceptions/Animal.java")) {
+            int data = 0;
+            while ((data=inputStream.read()) != -1) {
+                System.out.print((char)data);
+            }
             marker.checkInterface();
         } catch (InterfaceException e) {
             e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            //Not needed now
+            //inputStream.close();
+            System.out.println("Inside finally..");
         }
     }
 }
