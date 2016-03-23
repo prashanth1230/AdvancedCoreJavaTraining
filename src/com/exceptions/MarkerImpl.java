@@ -9,7 +9,7 @@ import java.io.InputStream;
  * Created by a487037 on 03/23/2016.
  */
 public class MarkerImpl implements Marker {
-    public void checkInterface() throws InterfaceException {
+    private void checkInterface() throws InterfaceException {
         if (this instanceof Marker) {
             System.out.println("Interface implemented");
         } else {
@@ -19,7 +19,7 @@ public class MarkerImpl implements Marker {
     public static void main(String[] args) {
         MarkerImpl marker = new MarkerImpl();
         try(InputStream inputStream = new FileInputStream("src/com/exceptions/Animal.java")) {
-            int data = 0;
+            int data;
             while ((data=inputStream.read()) != -1) {
                 System.out.print((char)data);
             }
