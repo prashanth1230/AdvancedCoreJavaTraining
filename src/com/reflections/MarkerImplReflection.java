@@ -1,10 +1,13 @@
-package com.exceptions;
+package com.reflections;
+
+import com.exceptions.InterfaceException;
+import com.exceptions.Marker;
 
 /**
  * Created by a487037 on 03/23/2016.
  */
 public class MarkerImplReflection implements Marker {
-    private void checkInterface() throws InterfaceException {
+    public void checkInterface() throws InterfaceException {
         Class<?> clazz = this.getClass();
         Class<?> interfaces[] = clazz.getInterfaces();
         boolean flag = false;
@@ -17,6 +20,10 @@ public class MarkerImplReflection implements Marker {
         if (flag) {
             System.out.println("Interface is implemented");
         }
+    }
+
+    private void helloPrivate() {
+        System.out.println("Private method");
     }
 
     public static void main(String[] args) {
